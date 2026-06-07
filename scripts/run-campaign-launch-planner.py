@@ -12,67 +12,59 @@ vertical = os.environ["VERTICAL"]
 slug = re.sub(r"[^a-z0-9]+", "-", f"{product}-{vertical}".lower()).strip("-")
 
 schema = Path("agents/campaign-launch-planner/output-schema.json").read_text()
-system_prompt = Path("agents/campaign-launch-planner/SKILL.md").read_text()
 
-print(f"Running campaign planner for: {product} / {goal} / {vertical}")
+print(f"Planning campaign: {product} / {goal} / {vertical}")
 
-messages = [
-    {
+response = client.messages.create(
+    model="claude-opus-4-8",
+    max_tokens=8000,
+    messages=[{
         "role": "user",
-        "content": (
-            f"Product: {product}\nGoal: {goal}\nVertical: {vertical}\n\n"
-            f"Output schema to follow:\n{schema}\n\n"
-            "Research current market trends and best practices for this product and vertical, "
-            "then return ONLY valid JSON matching the schema above. "
-            "Do not include any text outside the JSON object."
-        ),
-    }
-]
+        "content": f"""You are a senior product marketing strategist for a B2B deep-tech hardware company.
 
-tools = [{"type": "web_search_20250305", "name": "web_search"}]
+Build a complete campaign and launch plan for:
+- Product: {product}
+- Goal: {goal}
+- Vertical: {vertical}
 
-while True:
-    response = client.messages.create(
-        model="claude-opus-4-8",
-        max_tokens=8096,
-        system=system_prompt,
-        tools=tools,
-        messages=messages,
-    )
+Return ONLY a valid JSON object matching this schema exactly. No markdown fences, no prose, no explanation — just the raw JSON object starting with {{ and ending with }}.
 
-    print(f"  stop_reason: {response.stop_reason}")
+Schema:
+{schema}
 
-    tool_uses = [b for b in response.content if b.type == "tool_use"]
-    text_blocks = [b for b in response.content if b.type == "text"]
+Requirements:
+- channel_recommendation.channels: at least 4 channels with budget_pct values that sum to 100
+- budget_split.allocation: must match channels and sum to 100%
+- messaging_hierarchy.headline: max 8 words, punchy and specific
+- launch_timeline.phases: at least 3 phases (pre-launch, launch week, post-launch)
+- sales_enablement.talk_track: at least 4 steps
+- sales_enablement.objection_handling: at least 3 objections with responses
+- kpis.channel_kpis: one KPI per recommended channel
+- risk_contingency.risks: at least 2 risks with mitigations
+{"- launch_timeline.defense_timing_note: include US Government FY timing guidance" if "Defense" in vertical else "- launch_timeline.defense_timing_note: set to null"}
+- All recommendations must be specific and actionable, not generic templates
+"""
+    }]
+)
 
-    if response.stop_reason == "end_turn" or not tool_uses:
-        if text_blocks:
-            result_text = text_blocks[-1].text
-            break
-        else:
-            raise ValueError("No text in final response")
+# Extract text
+result_text = ""
+for block in response.content:
+    if hasattr(block, "text") and block.text and block.text.strip():
+        result_text = block.text.strip()
+        break
 
-    messages.append({"role": "assistant", "content": response.content})
+if not result_text:
+    raise ValueError(f"Empty response. Stop reason: {response.stop_reason}. Content types: {[type(b).__name__ for b in response.content]}")
 
-    tool_results = []
-    for tu in tool_uses:
-        print(f"  tool_use: {tu.name}({json.dumps(tu.input)[:120]})")
-        tool_results.append(
-            {
-                "type": "tool_result",
-                "tool_use_id": tu.id,
-                "content": "Tool executed successfully.",
-            }
-        )
+print(f"Got response ({len(result_text)} chars), stop_reason={response.stop_reason}")
 
-    messages.append({"role": "user", "content": tool_results})
+# Strip markdown fences if present
+if result_text.startswith("```"):
+    result_text = re.sub(r"^```[a-z]*\n?", "", result_text)
+    result_text = re.sub(r"\n?```\s*$", "", result_text).strip()
 
-json_text = result_text.strip()
-if json_text.startswith("```"):
-    json_text = re.sub(r"^```[a-z]*\n?", "", json_text)
-    json_text = re.sub(r"\n?```$", "", json_text)
-
-result = json.loads(json_text)
+result = json.loads(result_text)
 result["generated_at"] = datetime.now(timezone.utc).isoformat()
 result["product"] = product
 result["goal"] = goal

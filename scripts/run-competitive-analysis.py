@@ -11,72 +11,53 @@ product = os.environ["PRODUCT_NAME"]
 slug = re.sub(r"[^a-z0-9]+", "-", f"{competitor}-{product}".lower()).strip("-")
 
 schema = Path("agents/competitive-analysis/output-schema.json").read_text()
-system_prompt = Path("agents/competitive-analysis/SKILL.md").read_text()
 
-print(f"Running competitive analysis for: {competitor} / {product}")
+print(f"Analyzing: {competitor} / {product}")
 
-messages = [
-    {
+response = client.messages.create(
+    model="claude-opus-4-8",
+    max_tokens=8000,
+    messages=[{
         "role": "user",
-        "content": (
-            f"Analyze competitor: {competitor}, product: {product}.\n\n"
-            f"Output schema to follow:\n{schema}\n\n"
-            "Research this competitor thoroughly using web search, then return ONLY valid JSON "
-            "matching the schema above. Do not include any text outside the JSON object."
-        ),
-    }
-]
+        "content": f"""You are a world-class competitive intelligence analyst for a B2B product marketing team.
 
-# Agentic loop — keep going until stop_reason is "end_turn"
-tools = [{"type": "web_search_20250305", "name": "web_search"}]
+Analyze competitor: {competitor}, product: {product}.
 
-while True:
-    response = client.messages.create(
-        model="claude-opus-4-8",
-        max_tokens=8096,
-        system=system_prompt,
-        tools=tools,
-        messages=messages,
-    )
+Return ONLY a valid JSON object matching this schema exactly. No markdown fences, no prose, no explanation — just the raw JSON object starting with {{ and ending with }}.
 
-    print(f"  stop_reason: {response.stop_reason}")
+Schema:
+{schema}
 
-    # Collect tool uses and text
-    tool_uses = [b for b in response.content if b.type == "tool_use"]
-    text_blocks = [b for b in response.content if b.type == "text"]
+Requirements:
+- Fill every field as specifically as possible with real data about {competitor} and {product}
+- swot: at least 3 items per category
+- battle_card.we_win_when and they_win_when: at least 3 scenarios each
+- battle_card.objection_handling: at least 3 objections with responses
+- campaign_opportunities.ad_angles_to_test: at least 3 specific ad angles
+- Use null only if data is genuinely unknown
+- pricing.notes: include any known pricing signals even if exact prices are unavailable
+"""
+    }]
+)
 
-    if response.stop_reason == "end_turn" or not tool_uses:
-        # Final response — extract JSON
-        if text_blocks:
-            result_text = text_blocks[-1].text
-            break
-        else:
-            raise ValueError("No text in final response")
+# Extract text
+result_text = ""
+for block in response.content:
+    if hasattr(block, "text") and block.text and block.text.strip():
+        result_text = block.text.strip()
+        break
 
-    # Append assistant message
-    messages.append({"role": "assistant", "content": response.content})
+if not result_text:
+    raise ValueError(f"Empty response. Stop reason: {response.stop_reason}. Content types: {[type(b).__name__ for b in response.content]}")
 
-    # Execute tool calls and build tool_result blocks
-    tool_results = []
-    for tu in tool_uses:
-        print(f"  tool_use: {tu.name}({json.dumps(tu.input)[:120]})")
-        tool_results.append(
-            {
-                "type": "tool_result",
-                "tool_use_id": tu.id,
-                "content": "Tool executed successfully.",  # web_search handles itself
-            }
-        )
+print(f"Got response ({len(result_text)} chars), stop_reason={response.stop_reason}")
 
-    messages.append({"role": "user", "content": tool_results})
+# Strip markdown fences if present
+if result_text.startswith("```"):
+    result_text = re.sub(r"^```[a-z]*\n?", "", result_text)
+    result_text = re.sub(r"\n?```\s*$", "", result_text).strip()
 
-# Parse JSON from the result text (strip any markdown fences if present)
-json_text = result_text.strip()
-if json_text.startswith("```"):
-    json_text = re.sub(r"^```[a-z]*\n?", "", json_text)
-    json_text = re.sub(r"\n?```$", "", json_text)
-
-result = json.loads(json_text)
+result = json.loads(result_text)
 result["analyzed_at"] = datetime.now(timezone.utc).isoformat()
 result["competitor"] = competitor
 result["product"] = product
