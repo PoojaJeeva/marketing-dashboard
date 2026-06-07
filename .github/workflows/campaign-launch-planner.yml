@@ -1,0 +1,53 @@
+name: Campaign & Launch Planner Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      product_name:
+        description: "Product name"
+        required: true
+      campaign_goal:
+        description: "Campaign goal (e.g. Launch into aerospace Q3)"
+        required: true
+      vertical:
+        description: "Target vertical"
+        required: true
+        default: "Commercial/Industrial"
+        type: choice
+        options:
+          - Commercial/Industrial
+          - Defense/Government
+  repository_dispatch:
+    types: [run-campaign-launch-planner]
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run campaign planner agent
+        run: python scripts/run-campaign-launch-planner.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PRODUCT_NAME: ${{ github.event.inputs.product_name || github.event.client_payload.product_name }}
+          CAMPAIGN_GOAL: ${{ github.event.inputs.campaign_goal || github.event.client_payload.campaign_goal }}
+          VERTICAL: ${{ github.event.inputs.vertical || github.event.client_payload.vertical }}
+
+      - name: Commit results
+        run: |
+          git config user.email "agent@github.com"
+          git config user.name "Campaign Planner Agent"
+          git add dashboard/data/
+          git diff --staged --quiet || git commit -m "campaign plan: ${{ github.event.inputs.product_name || github.event.client_payload.product_name }}"
+          git push

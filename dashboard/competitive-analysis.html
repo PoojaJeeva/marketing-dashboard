@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competitive Analysis · Marketing Intelligence</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <span class="nav-brand">⚡ Marketing Intelligence</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="competitive-analysis.html" class="active">Competitive Analysis</a>
+      <a href="campaign-launch-planner.html">Campaign Planner</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>🔍 Competitive Analysis</h1>
+      <p>Enter a competitor name and product. The agent will research pricing, positioning, messaging, GTM, SWOT, battle card, and campaign opportunities.</p>
+    </div>
+
+    <div class="input-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Competitor Company</label>
+          <input id="competitor" type="text" placeholder="e.g. IPG Photonics" />
+        </div>
+        <div class="form-group">
+          <label>Product Name</label>
+          <input id="product" type="text" placeholder="e.g. YLS-2000" />
+        </div>
+        <button class="btn btn-primary" id="run-btn" onclick="runAnalysis()">Run Analysis →</button>
+      </div>
+    </div>
+
+    <div class="status-bar" id="status-bar">
+      <div class="status-dot queued" id="status-dot"></div>
+      <span id="status-text">Queued…</span>
+    </div>
+
+    <div class="results-header" id="results-header">
+      <div class="results-meta">
+        <h2 id="results-title"></h2>
+        <p id="results-sub"></p>
+      </div>
+      <div class="export-btns">
+        <button class="btn btn-secondary" id="copy-btn" onclick="copyBattleCard(window._result)">Copy Battle Card</button>
+        <button class="btn btn-secondary" onclick="window.print()">Download PDF</button>
+        <button class="btn btn-secondary" onclick="downloadJson(window._result)">Download JSON</button>
+      </div>
+    </div>
+
+    <div class="section-tabs" id="section-tabs"></div>
+    <div class="results-grid" id="results-grid"></div>
+  </div>
+
+  <script src="js/github-api.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    async function runAnalysis() {
+      const competitor = document.getElementById("competitor").value.trim();
+      const product    = document.getElementById("product").value.trim();
+      if (!competitor || !product) { alert("Please enter both competitor name and product name."); return; }
+
+      const btn = document.getElementById("run-btn");
+      btn.disabled = true;
+      btn.textContent = "Running…";
+      setStatus("Queued — waiting for GitHub Actions to start…", "queued");
+
+      try {
+        await triggerWorkflow("competitive-analysis.yml", {
+          competitor_name: competitor,
+          product_name: product,
+        });
+
+        // Wait a few seconds for GitHub to register the run
+        await new Promise(r => setTimeout(r, 5000));
+
+        setStatus("Agent is running — researching competitor data…", "running");
+
+        const run = await getLatestRun("competitive-analysis.yml");
+        if (!run) throw new Error("Could not find workflow run. Check GitHub Actions tab.");
+
+        await pollRun(run.id, (status, conclusion) => {
+          if (status === "in_progress") setStatus("Agent is researching and synthesizing data…", "running");
+          if (status === "completed" && conclusion === "success") setStatus("Analysis complete!", "complete");
+        });
+
+        // Slug = competitor-product in lowercase, non-alphanumeric replaced with -
+        const slug = `${competitor}-${product}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        const data = await fetchResultJson(`dashboard/data/competitive/${slug}.json`);
+        window._result = data;
+
+        const grid = document.getElementById("results-grid");
+        grid.innerHTML = renderCompetitiveAnalysis(data);
+        populateTabs(10);
+        showResults(
+          `${competitor} — ${product}`,
+          `Analyzed ${new Date(data.analyzed_at).toLocaleString()}`
+        );
+      } catch (e) {
+        setStatus(`Error: ${e.message}`, "failed");
+        console.error(e);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Run Analysis →";
+      }
+    }
+  </script>
+</body>
+</html>

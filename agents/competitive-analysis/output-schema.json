@@ -1,0 +1,76 @@
+{
+  "competitor": "string",
+  "product": "string",
+  "analyzed_at": "ISO8601 timestamp",
+  "company_overview": {
+    "description": "string",
+    "founded": "string or null",
+    "size": "string or null",
+    "funding": "string or null",
+    "headquarters": "string or null",
+    "recent_news": ["string"]
+  },
+  "product_analysis": {
+    "description": "string",
+    "key_features": ["string"],
+    "technical_specs": {},
+    "limitations": ["string"],
+    "integrations": ["string"],
+    "certifications": ["string"]
+  },
+  "pricing": {
+    "model": "string",
+    "tiers": [{"name": "string", "price": "string", "includes": ["string"]}],
+    "free_tier": "boolean",
+    "enterprise_pricing": "boolean",
+    "notes": "string or null",
+    "source_url": "string or null"
+  },
+  "positioning": {
+    "tagline": "string or null",
+    "positioning_statement": "string",
+    "key_messages": ["string"],
+    "tone": "string",
+    "claims": ["string"]
+  },
+  "icp": {
+    "company_size": "string or null",
+    "industries": ["string"],
+    "buyer_personas": ["string"],
+    "geographies": ["string"],
+    "evidence": "string"
+  },
+  "gtm": {
+    "sales_motion": "string",
+    "primary_channels": ["string"],
+    "partnerships": ["string"],
+    "content_strategy": "string",
+    "community": "string or null"
+  },
+  "swot": {
+    "strengths": ["string"],
+    "weaknesses": ["string"],
+    "opportunities": ["string"],
+    "threats": ["string"]
+  },
+  "battle_card": {
+    "we_win_when": ["string"],
+    "they_win_when": ["string"],
+    "objection_handling": [{"objection": "string", "response": "string"}],
+    "key_differentiators": ["string"],
+    "trap_questions": ["string"]
+  },
+  "campaign_opportunities": {
+    "gaps_in_their_messaging": ["string"],
+    "keywords_they_dont_own": ["string"],
+    "audience_segments_they_ignore": ["string"],
+    "ad_angles_to_test": ["string"]
+  },
+  "launch_counter_strategy": {
+    "if_launching_against_them": "string",
+    "channels_to_prioritize": ["string"],
+    "messages_to_lead_with": ["string"],
+    "timing_recommendation": "string",
+    "risk_to_watch": "string"
+  }
+}

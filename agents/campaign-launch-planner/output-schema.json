@@ -1,0 +1,90 @@
+{
+  "product": "string",
+  "goal": "string",
+  "vertical": "string",
+  "generated_at": "ISO8601 timestamp",
+  "campaign_brief": {
+    "objective": "string",
+    "target_audience": "string",
+    "key_message": "string",
+    "proof_point": "string",
+    "call_to_action": "string"
+  },
+  "buyer_persona": {
+    "primary_persona": {
+      "role": "string",
+      "pain_points": ["string"],
+      "information_sources": ["string"]
+    },
+    "buying_committee": [
+      {"role": "string", "their_question": "string", "content_needed": "string"}
+    ],
+    "icp": {
+      "company_size": "string",
+      "industries": ["string"],
+      "geographies": ["string"]
+    }
+  },
+  "messaging_hierarchy": {
+    "headline": "string",
+    "subheadline": "string",
+    "body_message": "string",
+    "tone": "string",
+    "words_to_use": ["string"],
+    "words_to_avoid": ["string"]
+  },
+  "channel_recommendation": {
+    "channels": [
+      {
+        "channel": "string",
+        "rationale": "string",
+        "budget_pct": "number",
+        "priority": "High | Medium | Low",
+        "kpi": "string"
+      }
+    ],
+    "channel_sequence": "string"
+  },
+  "budget_split": {
+    "total_budget_assumption": "string",
+    "allocation": [
+      {"channel": "string", "pct": "number", "monthly_est": "string"}
+    ]
+  },
+  "content_creative_plan": {
+    "hero_asset": "string",
+    "supporting_assets": [
+      {"format": "string", "purpose": "string", "specs": "string"}
+    ],
+    "content_calendar": [
+      {"week": "number", "action": "string"}
+    ]
+  },
+  "launch_timeline": {
+    "phases": [
+      {"phase": "string", "actions": ["string"]}
+    ],
+    "defense_timing_note": "string or null"
+  },
+  "sales_enablement": {
+    "one_pager_summary": "string",
+    "talk_track": ["string"],
+    "objection_handling": [
+      {"objection": "string", "response": "string"}
+    ],
+    "demo_sequence": ["string"]
+  },
+  "kpis": {
+    "primary_kpi": "string",
+    "channel_kpis": [
+      {"channel": "string", "kpi": "string", "target": "string"}
+    ],
+    "reporting_cadence": "string"
+  },
+  "risk_contingency": {
+    "risks": [
+      {"risk": "string", "probability": "High | Medium | Low", "mitigation": "string"}
+    ],
+    "pivot_triggers": ["string"]
+  }
+}

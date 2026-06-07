@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaign & Launch Planner · Marketing Intelligence</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <span class="nav-brand">⚡ Marketing Intelligence</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="competitive-analysis.html">Competitive Analysis</a>
+      <a href="campaign-launch-planner.html" class="active">Campaign Planner</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>🚀 Campaign & Launch Planner</h1>
+      <p>Enter a product, goal, and target vertical. The agent builds a full campaign brief, channel plan, budget split, messaging, launch timeline, sales enablement pack, and KPIs.</p>
+    </div>
+
+    <div class="input-form">
+      <div class="form-row">
+        <div class="form-group" style="flex:1.5">
+          <label>Product Name</label>
+          <input id="product" type="text" placeholder="e.g. CleanTech 1000W Fiber Laser" />
+        </div>
+        <div class="form-group" style="flex:2">
+          <label>Campaign Goal</label>
+          <input id="goal" type="text" placeholder="e.g. Launch into aerospace market Q3" />
+        </div>
+        <div class="form-group">
+          <label>Vertical</label>
+          <select id="vertical">
+            <option value="Commercial/Industrial">Commercial / Industrial</option>
+            <option value="Defense/Government">Defense / Government</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="run-btn" onclick="runPlanner()">Generate Plan →</button>
+      </div>
+    </div>
+
+    <div class="status-bar" id="status-bar">
+      <div class="status-dot queued" id="status-dot"></div>
+      <span id="status-text">Queued…</span>
+    </div>
+
+    <div class="results-header" id="results-header">
+      <div class="results-meta">
+        <h2 id="results-title"></h2>
+        <p id="results-sub"></p>
+      </div>
+      <div class="export-btns">
+        <button class="btn btn-secondary" id="copy-btn" onclick="copyBattleCard(window._result)">Copy Sales Pack</button>
+        <button class="btn btn-secondary" onclick="window.print()">Download PDF</button>
+        <button class="btn btn-secondary" onclick="downloadJson(window._result)">Download JSON</button>
+      </div>
+    </div>
+
+    <div class="section-tabs" id="section-tabs"></div>
+    <div class="results-grid" id="results-grid"></div>
+  </div>
+
+  <script src="js/github-api.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    async function runPlanner() {
+      const product  = document.getElementById("product").value.trim();
+      const goal     = document.getElementById("goal").value.trim();
+      const vertical = document.getElementById("vertical").value;
+      if (!product || !goal) { alert("Please enter both product name and campaign goal."); return; }
+
+      const btn = document.getElementById("run-btn");
+      btn.disabled = true;
+      btn.textContent = "Running…";
+      setStatus("Queued — waiting for GitHub Actions to start…", "queued");
+
+      try {
+        await triggerWorkflow("campaign-launch-planner.yml", {
+          product_name: product,
+          campaign_goal: goal,
+          vertical: vertical,
+        });
+
+        await new Promise(r => setTimeout(r, 5000));
+        setStatus("Agent is building your campaign plan…", "running");
+
+        const run = await getLatestRun("campaign-launch-planner.yml");
+        if (!run) throw new Error("Could not find workflow run. Check GitHub Actions tab.");
+
+        await pollRun(run.id, (status, conclusion) => {
+          if (status === "in_progress") setStatus("Agent is researching market trends and building your plan…", "running");
+          if (status === "completed" && conclusion === "success") setStatus("Plan complete!", "complete");
+        });
+
+        const slug = `${product}-${vertical}`.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        const data = await fetchResultJson(`dashboard/data/campaigns/${slug}.json`);
+        window._result = data;
+
+        const grid = document.getElementById("results-grid");
+        grid.innerHTML = renderCampaignPlan(data);
+        populateTabs(10);
+        showResults(
+          `${product} — ${vertical}`,
+          `Generated ${new Date(data.generated_at).toLocaleString()}`
+        );
+      } catch (e) {
+        setStatus(`Error: ${e.message}`, "failed");
+        console.error(e);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Generate Plan →";
+      }
+    }
+  </script>
+</body>
+</html>
