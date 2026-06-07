@@ -21,6 +21,7 @@ async function ghFetch(path, opts = {}) {
     const body = await res.text();
     throw new Error(`GitHub API ${res.status}: ${body}`);
   }
+  if (res.status === 204 || res.headers.get("content-length") === "0") return {};
   return res.json();
 }
 
