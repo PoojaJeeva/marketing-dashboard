@@ -1,4 +1,4 @@
-// GitHub API helpers — all calls go through the PAT stored in sessionStorage
+// GitHub API helpers — v3
 const OWNER = "PoojaJeeva";
 const REPO  = "marketing-dashboard";
 
@@ -21,12 +21,15 @@ async function ghFetch(path, opts = {}) {
     const body = await res.text();
     throw new Error(`GitHub API ${res.status}: ${body}`);
   }
-  if (res.status === 204 || res.headers.get("content-length") === "0") return {};
-  return res.json();
+  // Always read as text first — never call .json() directly on potentially empty bodies
+  const text = await res.text();
+  if (!text || !text.trim()) return {};
+  return JSON.parse(text);
 }
 
 async function triggerWorkflow(workflow, inputs) {
-  return ghFetch(
+  // GitHub returns 204 No Content on success — ghFetch handles that
+  await ghFetch(
     `/repos/${OWNER}/${REPO}/actions/workflows/${workflow}/dispatches`,
     {
       method: "POST",
@@ -37,7 +40,6 @@ async function triggerWorkflow(workflow, inputs) {
 }
 
 async function getLatestRun(workflow) {
-  // Small delay so GitHub has time to register the new run
   const data = await ghFetch(
     `/repos/${OWNER}/${REPO}/actions/workflows/${workflow}/runs?per_page=1`
   );
@@ -49,7 +51,6 @@ async function getRunStatus(runId) {
 }
 
 async function fetchResultJson(path) {
-  // Fetch raw JSON file from the repo via the contents API
   const data = await ghFetch(
     `/repos/${OWNER}/${REPO}/contents/${path}?ref=main`
   );
@@ -57,7 +58,7 @@ async function fetchResultJson(path) {
   return JSON.parse(text);
 }
 
-// Poll until a workflow run completes (or fails), then resolve
+// Poll until workflow run completes or fails
 function pollRun(runId, onStatus) {
   return new Promise((resolve, reject) => {
     const iv = setInterval(async () => {
