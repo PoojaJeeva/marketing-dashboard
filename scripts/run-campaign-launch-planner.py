@@ -78,7 +78,7 @@ result["product"] = product
 result["goal"] = goal
 result["vertical"] = vertical
 
-out_path = Path(f"dashboard/data/campaigns/{slug}.json")
+out_path = Path(f"docs/data/campaigns/{slug}.json")
 out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(result, indent=2))
 print(f"Saved: {out_path}")

@@ -81,7 +81,7 @@ result["analyzed_at"] = datetime.now(timezone.utc).isoformat()
 result["competitor"] = competitor
 result["product"] = product
 
-out_path = Path(f"dashboard/data/competitive/{slug}.json")
+out_path = Path(f"docs/data/competitive/{slug}.json")
 out_path.parent.mkdir(parents=True, exist_ok=True)
 out_path.write_text(json.dumps(result, indent=2))
 print(f"Saved: {out_path}")
