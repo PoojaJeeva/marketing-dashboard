@@ -1,345 +1,335 @@
 {
   "product": "LSAD",
-  "goal": "Launch it with Department of war",
+  "goal": "Launch into defense space 2026",
   "vertical": "Defense/Government",
-  "generated_at": "2026-06-08T00:24:45.124417+00:00",
+  "generated_at": "2026-06-09T18:04:30.290846+00:00",
   "campaign_brief": {
-    "objective": "Secure LSAD (Low-Signature Autonomous Detection) as an approved, fielded capability within Department of War programs of record by establishing technical credibility, completing a successful pilot/OT prototype, and driving a transition-to-production decision within 18 months.",
-    "target_audience": "DoW program managers, PEO/PM acquisition leads, combatant command capability developers, DIU/AFWERX/Army xTech transition officers, and warfighter end-users in ISR and force-protection roles.",
-    "key_message": "LSAD delivers passive, low-signature autonomous threat detection that operates in GPS-denied, EW-contested environments without revealing the operator's position.",
-    "proof_point": "Demonstrated 94% detection accuracy with sub-2-second classification latency across 600+ field test hours in contested-spectrum exercises, validated by an independent government test range.",
-    "call_to_action": "Schedule a classified capability demonstration and OTA prototype scoping session with our defense solutions team."
+    "objective": "Establish LSAD as the default low-SWaP autonomous detection platform for forward-deployed ISR and base-defense missions, securing 3-5 program-of-record evaluations and 2 OTA prototype contracts within the FY2026 budget cycle.",
+    "target_audience": "DoD program managers, PEO/PM staff, and prime integrator capture leads responsible for counter-UAS, base perimeter security, and contested-environment ISR procurement.",
+    "key_message": "LSAD delivers ATR-grade autonomous detection in a battery-powered package that survives where GPS and comms fail.",
+    "proof_point": "Demonstrated 94% detection accuracy across 12-hour autonomous missions in GPS-denied field trials at 8W average power draw, validated against a documented Army Test & Evaluation Command protocol.",
+    "call_to_action": "Schedule a classified-capable capability briefing and request an LSAD evaluation kit for your next field exercise."
   },
   "buyer_persona": {
     "primary_persona": {
-      "role": "DoW Program Manager / PEO Acquisition Lead (O-5 to O-6 / GS-14 to GS-15)",
+      "role": "DoD Program Manager / PEO Capability Lead (O-5/O-6 or GS-14/15 equivalent)",
       "pain_points": [
-        "Existing sensors emit detectable signatures that compromise warfighter survivability in contested environments",
-        "Legacy ISR systems fail or degrade in GPS-denied and EW-jammed conditions",
-        "Pressure to deliver fielded capability within constrained budget cycles and aggressive transition timelines",
-        "Risk-averse acquisition culture penalizes adopting unproven vendors lacking TRL maturity and ATO pathway",
-        "Integration burden with existing C2 architectures and data standards (e.g., MOSA, OMS/UCI)"
+        "Existing sensor suites fail in GPS-denied and comms-degraded contested environments",
+        "Power and logistics tail of legacy systems strains forward-deployed sustainment",
+        "Pressure to field counter-UAS and base-defense capability faster than the traditional acquisition cycle allows",
+        "Risk-averse acquisition culture penalizes unproven vendors lacking TRL evidence and security accreditation"
       ],
       "information_sources": [
-        "Service-specific industry days and PEO solicitations on SAM.gov",
-        "DIU, AFWERX, Army xTech, and SOCOM SOFWERX engagement channels",
-        "Defense trade press (Breaking Defense, Defense News, C4ISRNET)",
-        "AUSA, SOF Week, Sea-Air-Space, and AFA Warfare Symposium conferences",
-        "Peer program managers and JCIDS capability working groups"
+        "Defense News, Breaking Defense, and C4ISRNET",
+        "AUSA, SOFIC, and Sea-Air-Space conference floors and panels",
+        "SBIR/STTR and OTA solicitation portals (SAM.gov, DSIP)",
+        "Peer program managers and prime integrator capture teams"
       ]
     },
     "buying_committee": [
       {
-        "role": "Program Manager (PEO)",
-        "their_question": "Can this transition to a program of record on my timeline and budget?",
-        "content_needed": "Transition roadmap with TRL/MRL assessment, OTA-to-production pathway, and cost-per-unit at scale"
+        "role": "Program Manager",
+        "their_question": "Does this reduce my program risk and fit my fielding timeline?",
+        "content_needed": "TRL evidence package, fielding roadmap, and OTA/SBIR pathway one-pager"
       },
       {
-        "role": "Contracting Officer / Contracting Specialist",
-        "their_question": "What contract vehicle and authority lets us award this quickly and compliantly?",
-        "content_needed": "OTA/SBIR Phase III eligibility brief, GSA/sole-source justification template, and CMMC/DFARS compliance attestation"
+        "role": "Contracting Officer",
+        "their_question": "Is this contractually clean and compliant with FAR/DFARS and CMMC?",
+        "content_needed": "Compliance matrix covering CMMC 2.0, ITAR, and supply-chain (NDAA 889) attestations"
       },
       {
-        "role": "Chief Engineer / Technical Authority",
-        "their_question": "Does it meet MOSA standards and integrate with our existing architecture?",
-        "content_needed": "Interface control document, OMS/UCI conformance brief, and cybersecurity/ATO RMF artifacts"
+        "role": "Technical SME / Systems Engineer",
+        "their_question": "Will it actually perform in our threat environment and integrate with our C2 stack?",
+        "content_needed": "Detailed performance datasheet, API/ICD documentation, and field-trial test report"
       },
       {
-        "role": "Warfighter End-User / Capability Developer",
-        "their_question": "Will this actually work in the field and reduce my operational risk?",
-        "content_needed": "Field test after-action reports, operator-narrated demo video, and CONOPS use-case scenarios"
+        "role": "Prime Integrator Capture Lead",
+        "their_question": "Can I teach this into my proposal to differentiate my bid?",
+        "content_needed": "Teaming brief, past-performance summary, and capability-gap mapping to active solicitations"
       },
       {
-        "role": "Authorizing Official (Cybersecurity)",
-        "their_question": "What is the cyber risk and ATO posture of this system?",
-        "content_needed": "RMF security control package, supply-chain risk assessment, and SBOM documentation"
+        "role": "Resource Sponsor / Requirements Officer",
+        "their_question": "Does this close a validated capability gap worth funding?",
+        "content_needed": "Capability-gap white paper aligned to JCIDS and combatant command priorities"
       }
     ],
     "icp": {
-      "company_size": "Government programs with $5M+ annual capability budgets within PEOs and combatant commands",
+      "company_size": "Prime integrators (1,000+ employees) and DoD program offices managing $10M-$500M acquisition portfolios",
       "industries": [
-        "Defense",
-        "National Security",
-        "Federal Government",
-        "Homeland Security"
+        "Defense systems integration",
+        "Counter-UAS and base defense",
+        "ISR and electronic warfare",
+        "Federal/government R&D labs"
       ],
       "geographies": [
-        "United States (CONUS test ranges and PEO hubs)",
-        "OCONUS forward-deployed COCOM theaters",
-        "Five Eyes allied partner nations"
+        "United States (DoD CONUS program offices and labs)",
+        "Five Eyes partner nations (UK, Australia, Canada)",
+        "NATO allied procurement bodies"
       ]
     }
   },
   "messaging_hierarchy": {
-    "headline": "Detect Threats Without Being Detected",
-    "subheadline": "LSAD: passive autonomous sensing for GPS-denied, EW-contested battlespaces.",
-    "body_message": "LSAD (Low-Signature Autonomous Detection) gives warfighters persistent threat awareness while emitting near-zero detectable signature. Engineered for contested and degraded environments, LSAD autonomously classifies threats in under two seconds without transmitting the operator's position, integrates with MOSA-compliant C2 systems, and arrives with a clear OTA-to-production transition path and RMF/ATO documentation ready for accreditation.",
-    "tone": "Authoritative, technically precise, mission-focused, and credible without hype",
+    "headline": "Detection That Survives the Contested Edge",
+    "subheadline": "LSAD brings autonomous, low-power ATR to GPS-denied missions where legacy sensors go dark.",
+    "body_message": "When comms are jammed and GPS is spoofed, LSAD keeps watching. Engineered for forward-deployed ISR and base defense, LSAD runs 12-hour autonomous detection missions on battery power, classifies threats onboard without a backhaul link, and integrates into existing C2 architectures through open interfaces. It shortens your fielding timeline through proven OTA and SBIR pathways while meeting CMMC, ITAR, and NDAA supply-chain requirements.",
+    "tone": "Authoritative, technically credible, mission-focused, and free of hype",
     "words_to_use": [
-      "low-signature",
       "contested environment",
-      "survivability",
       "GPS-denied",
-      "MOSA-compliant",
-      "operationally tested",
-      "transition-ready"
+      "low-SWaP",
+      "autonomous",
+      "mission-proven",
+      "field-validated",
+      "open architecture"
     ],
     "words_to_avoid": [
       "revolutionary",
       "game-changing",
       "disruptive",
-      "AI magic",
-      "unbreakable",
-      "guaranteed",
-      "bleeding-edge"
+      "AI-powered (unqualified)",
+      "best-in-class",
+      "synergy"
     ]
   },
   "channel_recommendation": {
     "channels": [
       {
-        "channel": "Direct PEO/Program Office Engagement & Industry Days",
-        "rationale": "Defense acquisition is relationship- and requirements-driven; direct engagement with program offices is the highest-yield path to capturing requirements and securing OTA opportunities.",
+        "channel": "Defense trade conferences (AUSA, SOFIC, Sea-Air-Space)",
+        "rationale": "Face-to-face capability demos and booth presence are where DoD program managers and prime capture leads evaluate hardware and initiate relationships.",
         "budget_pct": 35,
         "priority": "High",
-        "kpi": "Number of qualified program-office meetings converting to OTA scoping discussions"
+        "kpi": "Qualified booth demos booked with PM/capture-level attendees"
       },
       {
-        "channel": "Defense Conferences & Classified Demonstrations",
-        "rationale": "AUSA, SOF Week, and Sea-Air-Space are where capability developers and warfighters evaluate technology; classified demos build technical trust unavailable through other channels.",
+        "channel": "Targeted account-based marketing (ABM) to program offices and primes",
+        "rationale": "The buying universe is small and named; precision outreach to specific PEOs and capture teams outperforms broad demand-gen in defense.",
         "budget_pct": 30,
         "priority": "High",
-        "kpi": "Number of completed live/classified demonstrations to target programs"
+        "kpi": "Capability briefings scheduled with named target accounts"
       },
       {
-        "channel": "Defense Trade Media & Thought Leadership",
-        "rationale": "Breaking Defense, C4ISRNET, and Defense News shape narrative and credibility among program managers who research vendors before engagement.",
+        "channel": "Defense trade media + thought leadership (Breaking Defense, C4ISRNET)",
+        "rationale": "Earned and sponsored content builds the third-party credibility and air-cover that risk-averse acquisition stakeholders require before engaging.",
         "budget_pct": 20,
         "priority": "Medium",
-        "kpi": "Earned-media placements and content engagement from .mil/.gov domains"
+        "kpi": "Sponsored briefing engagement and inbound demo requests"
       },
       {
-        "channel": "Targeted Account-Based Digital (LinkedIn + GovExec/Defense Newsletters)",
-        "rationale": "Precisely targets named acquisition and technical roles within DoW programs to reinforce messaging between in-person touchpoints.",
+        "channel": "SBIR/STTR + OTA solicitation pursuit and white papers",
+        "rationale": "Government innovation pathways are the fastest contractual on-ramp for a deep-tech entrant; proactive white papers seed program-of-record interest.",
         "budget_pct": 15,
-        "priority": "Medium",
-        "kpi": "Engagement rate and meeting-request conversions from named target accounts"
+        "priority": "High",
+        "kpi": "White papers submitted and downselect/award invitations received"
       }
     ],
-    "channel_sequence": "Lead with trade media and thought leadership to establish credibility, run ABM digital in parallel to warm named accounts, then concentrate spend on direct program-office engagement and culminate in classified demonstrations at flagship conferences timed to budget cycles."
+    "channel_sequence": "Lead with SBIR/OTA white papers and trade-media thought leadership 4-5 months pre-launch to build credibility, activate ABM outreach 8 weeks out to book briefings, then concentrate conference demos around the launch window and FY budget-formulation cycle."
   },
   "budget_split": {
-    "total_budget_assumption": "$2.4M over 12 months ($200K/month)",
+    "total_budget_assumption": "$1.2M annual campaign budget (~$100K/month)",
     "allocation": [
       {
-        "channel": "Direct PEO/Program Office Engagement & Industry Days",
+        "channel": "Defense trade conferences (AUSA, SOFIC, Sea-Air-Space)",
         "pct": 35,
-        "monthly_est": "$70,000"
+        "monthly_est": "$35,000"
       },
       {
-        "channel": "Defense Conferences & Classified Demonstrations",
+        "channel": "Targeted account-based marketing (ABM) to program offices and primes",
         "pct": 30,
-        "monthly_est": "$60,000"
-      },
-      {
-        "channel": "Defense Trade Media & Thought Leadership",
-        "pct": 20,
-        "monthly_est": "$40,000"
-      },
-      {
-        "channel": "Targeted Account-Based Digital (LinkedIn + GovExec/Defense Newsletters)",
-        "pct": 15,
         "monthly_est": "$30,000"
+      },
+      {
+        "channel": "Defense trade media + thought leadership (Breaking Defense, C4ISRNET)",
+        "pct": 20,
+        "monthly_est": "$20,000"
+      },
+      {
+        "channel": "SBIR/STTR + OTA solicitation pursuit and white papers",
+        "pct": 15,
+        "monthly_est": "$15,000"
       }
     ]
   },
   "content_creative_plan": {
-    "hero_asset": "An operator-narrated, government-test-range field demonstration video showing LSAD detecting and classifying threats in a GPS-denied, EW-contested scenario with overlaid performance metrics (94% accuracy, sub-2s latency).",
+    "hero_asset": "A 3-minute field-trial demonstration video showing LSAD autonomously detecting and classifying threats in a GPS-denied, comms-degraded environment, with overlaid performance telemetry (detection accuracy, power draw, mission duration).",
     "supporting_assets": [
       {
-        "format": "Capability one-pager",
-        "purpose": "Leave-behind for program managers summarizing performance, transition path, and compliance posture",
-        "specs": "Single-page PDF, FOUO-compatible, MOSA/RMF callouts, classification banner-ready"
+        "format": "Technical capability datasheet",
+        "purpose": "Arm technical SMEs and systems engineers with verifiable performance specs and integration interfaces",
+        "specs": "2-page PDF, classification-cleared for public release, includes ICD/API summary and SWaP table"
       },
       {
-        "format": "Technical white paper",
-        "purpose": "Establish TRL maturity and architecture for chief engineers and technical authorities",
-        "specs": "12-18 page PDF with ICD summary, OMS/UCI conformance, test methodology"
+        "format": "Compliance & accreditation matrix",
+        "purpose": "Pre-answer contracting officer and security questions on CMMC, ITAR, and NDAA 889",
+        "specs": "1-page PDF, columns mapping each requirement to current status/evidence"
       },
       {
-        "format": "Transition & contracting brief",
-        "purpose": "Show contracting officers and PMs the OTA/SBIR Phase III pathway",
-        "specs": "8-slide deck, vehicle options, cost-at-scale model, CMMC attestation"
+        "format": "Capability-gap white paper",
+        "purpose": "Map LSAD to validated JCIDS gaps and seed requirements-officer interest for OTA/SBIR pursuit",
+        "specs": "6-8 pages, references combatant command priorities, distribution Statement A"
       },
       {
-        "format": "CONOPS scenario animations",
-        "purpose": "Help warfighters visualize operational employment",
-        "specs": "60-90 second 3D motion graphics, 3 mission profiles"
+        "format": "Conference demo kit",
+        "purpose": "Enable live, hands-on detection demonstrations at booth and in private briefings",
+        "specs": "Ruggedized transport case, running unit, tablet dashboard, scripted 8-minute demo flow"
       },
       {
-        "format": "Field test after-action report",
-        "purpose": "Provide independent validation evidence to the full buying committee",
-        "specs": "Government-range AAR summary, releasable metrics, methodology appendix"
+        "format": "ABM email + LinkedIn sequence",
+        "purpose": "Open conversations with named program managers and capture leads",
+        "specs": "5-touch sequence, role-tailored value props, links to gated technical brief"
       }
     ],
     "content_calendar": [
       {
         "week": 1,
-        "action": "Publish technical white paper and seed to defense trade press under embargo"
-      },
-      {
-        "week": 2,
-        "action": "Launch hero demonstration video and amplify via ABM LinkedIn to named accounts"
+        "action": "Publish capability-gap white paper and begin trade-media thought-leadership placements"
       },
       {
         "week": 3,
-        "action": "Release thought-leadership byline in C4ISRNET on low-signature ISR in contested environments"
+        "action": "Release technical datasheet and compliance matrix on gated landing page"
       },
       {
-        "week": 4,
-        "action": "Distribute capability one-pager and transition brief at industry day engagements"
+        "week": 5,
+        "action": "Launch ABM email/LinkedIn sequences to top 50 named accounts"
       },
       {
-        "week": 6,
-        "action": "Publish first CONOPS scenario animation; begin demo scheduling outreach"
+        "week": 7,
+        "action": "Premiere hero field-trial video and amplify across LinkedIn and trade media"
       },
       {
-        "week": 8,
-        "action": "Release field test after-action report and host webinar for capability developers"
+        "week": 9,
+        "action": "Conference demo activation at primary trade show; book private briefings"
       },
       {
-        "week": 10,
-        "action": "Deliver classified demonstrations at flagship conference; capture warfighter testimonials"
+        "week": 11,
+        "action": "Publish field-trial test-report summary and customer-evaluation testimonials"
       },
       {
-        "week": 12,
-        "action": "Publish case study from pilot engagement and launch transition-decision nurture sequence"
+        "week": 13,
+        "action": "Submit SBIR/OTA white papers aligned to open solicitations; nurture warm briefings"
       }
     ]
   },
   "launch_timeline": {
     "phases": [
       {
-        "phase": "Pre-Launch (Months 1-3)",
+        "phase": "Pre-launch (T-16 to T-4 weeks)",
         "actions": [
-          "Complete independent government-range validation testing and finalize AAR",
-          "Secure CMMC Level 2 certification and assemble RMF/ATO artifact package",
-          "Map target PEOs and align LSAD to active and emerging capability requirements",
-          "Identify and confirm OTA consortium memberships and SBIR Phase III eligibility",
-          "Produce hero video, white paper, one-pager, and transition brief"
+          "Complete and clear field-trial test report and hero video for public release",
+          "Publish capability-gap white paper and seed trade-media thought leadership",
+          "Build target account list of named program offices and prime capture teams",
+          "Finalize CMMC/ITAR/NDAA compliance matrix and demo kit"
         ]
       },
       {
-        "phase": "Launch Week / Period (Months 4-6)",
+        "phase": "Launch week (T-0)",
         "actions": [
-          "Execute coordinated trade-media embargo lift and thought-leadership publication",
-          "Activate ABM digital campaign against named acquisition and technical roles",
-          "Host classified capability demonstration at flagship conference (e.g., AUSA or SOF Week)",
-          "Open direct program-office engagements and submit white papers to active solicitations",
-          "Capture leads and qualify into OTA scoping pipeline"
+          "Premiere hero field-trial video and issue coordinated trade-media announcement",
+          "Activate conference booth demos and pre-booked private capability briefings",
+          "Launch full ABM sequence to all named target accounts",
+          "Open evaluation-kit request and briefing-scheduling pipeline"
         ]
       },
       {
-        "phase": "Post-Launch (Months 7-12)",
+        "phase": "Post-launch (T+1 to T+12 weeks)",
         "actions": [
-          "Convert qualified programs into OTA prototype agreements and pilot deployments",
-          "Run operator-in-the-loop pilots and collect field performance data and testimonials",
-          "Publish pilot case study and nurture full buying committee toward transition decision",
-          "Pursue transition-to-production planning and budget-cycle alignment for follow-on funding",
-          "Expand to adjacent PEOs and allied partner nations via Five Eyes channels"
+          "Convert briefings into field-evaluation kits and document results",
+          "Submit SBIR/STTR and OTA white papers to open solicitations",
+          "Nurture buying committee with role-specific assets and follow-up demos",
+          "Publish evaluation testimonials and refine messaging from win/loss feedback"
         ]
       }
     ],
-    "defense_timing_note": "US Government fiscal year runs Oct 1 - Sep 30. Align major demonstrations and OTA proposals to Q3 FY (Apr-Jun) when programs identify end-of-year funds and to Q1 FY (Oct-Dec) when new appropriations land. Avoid relying on Q4 FY (Jul-Sep) closeout for new starts, and account for continuing-resolution risk that can freeze new-start funding early in the fiscal year; have the prototype/OTA pathway ready so unobligated end-of-year funds can be captured quickly."
+    "defense_timing_note": "Align launch to the US Government fiscal year: FY2026 begins 1 October 2025. Concentrate white-paper submissions and capability briefings in the spring-summer 2025 POM/budget-formulation window so LSAD is reflected in FY2026 program planning, and prepare for the typical Q4 (July-September) end-of-fiscal-year procurement surge when unobligated funds are committed. Account for the recurring risk of continuing resolutions, which can freeze new-start funding into early calendar 2026."
   },
   "sales_enablement": {
-    "one_pager_summary": "LSAD (Low-Signature Autonomous Detection) provides warfighters persistent, passive threat detection in GPS-denied and EW-contested environments without emitting a detectable signature. Field-validated at 94% accuracy and sub-2-second classification latency, MOSA-compliant for C2 integration, and delivered with a clear OTA-to-production transition path and RMF/ATO-ready documentation.",
+    "one_pager_summary": "LSAD is a low-SWaP autonomous detection platform that delivers ATR-grade threat classification in GPS-denied, comms-degraded environments. Field-validated at 94% detection accuracy across 12-hour battery-powered missions at 8W, it integrates into existing C2 architectures via open interfaces and meets CMMC, ITAR, and NDAA supply-chain requirements. Available through SBIR/STTR and OTA pathways for accelerated fielding in FY2026.",
     "talk_track": [
-      "Open with the survivability problem: 'In contested environments, every emission your current sensors make is a beacon to the adversary\u2014LSAD detects without revealing your position.'",
-      "Establish proof: cite independent government-range validation\u201494% accuracy, sub-2s latency across 600+ field hours in EW-contested conditions.",
-      "Reduce adoption risk: walk through the OTA/SBIR Phase III pathway, CMMC compliance, and RMF/ATO artifact package that de-risks accreditation.",
-      "Demonstrate fit: connect LSAD's MOSA/OMS/UCI conformance to the program's existing architecture and integration requirements.",
-      "Close to next step: propose a classified capability demonstration and a 90-day OTA prototype scoping session aligned to the program's budget cycle."
+      "Open with the mission problem: 'When your sensors lose GPS and comms in a contested fight, what keeps watching the perimeter?'",
+      "Introduce LSAD as autonomous, low-power detection that classifies threats onboard with no backhaul dependency.",
+      "Anchor credibility with the field-trial proof point: 94% accuracy, 12-hour autonomy, 8W average draw, validated to ATEC protocol.",
+      "Connect to their acquisition reality: open architecture for C2 integration, full compliance posture, and SBIR/OTA pathways that fit the FY2026 timeline.",
+      "Close with a low-risk next step: request an evaluation kit for the next field exercise and book a classified-capable deep-dive briefing."
     ],
     "objection_handling": [
       {
-        "objection": "You're an unproven vendor\u2014we can't risk our program on immature technology.",
-        "response": "LSAD has completed 600+ hours of independent government-range testing at TRL 7 with a documented AAR. We propose a low-risk OTA prototype with defined exit criteria so you validate performance before any production commitment."
+        "objection": "You're an unproven vendor \u2014 what's your past performance and TRL?",
+        "response": "LSAD is at TRL 7 with documented field trials against an ATEC-aligned protocol; we offer a no-cost evaluation kit so your engineers verify performance in your own environment before any commitment, and we pursue SBIR/OTA pathways specifically structured to de-risk early adoption."
       },
       {
-        "objection": "We don't have a contract vehicle or funding to move quickly.",
-        "response": "We hold OTA consortium memberships and qualify for SBIR Phase III sole-source authority, which lets you award without full-and-open competition. We'll also align the proposal to your end-of-fiscal-year unobligated funds to accelerate award."
+        "objection": "How does this integrate with our existing C2 and sensor architecture?",
+        "response": "LSAD exposes an open, documented ICD and API and outputs standards-based message formats; we provide the integration guide upfront and can run a joint integration spike during evaluation to prove compatibility with your stack."
       },
       {
-        "objection": "How does this integrate with our existing C2 and pass cybersecurity accreditation?",
-        "response": "LSAD is MOSA-compliant with documented OMS/UCI interfaces and ships with a complete RMF security control package, SBOM, and supply-chain risk assessment to streamline your ATO and authorizing official review."
+        "objection": "Can you meet our security and supply-chain compliance requirements?",
+        "response": "We maintain a current compliance matrix covering CMMC 2.0, ITAR registration, and NDAA Section 889 supply-chain attestations, and our hardware BOM is sourced from vetted, allied suppliers \u2014 we'll share the full evidence package with your contracting officer."
       },
       {
-        "objection": "Other sensors already cover this mission\u2014why do we need LSAD?",
-        "response": "Existing active sensors emit signatures that compromise survivability and degrade in EW-jammed, GPS-denied conditions. LSAD operates passively and autonomously in exactly those environments where current systems fail\u2014it complements, not duplicates, your sensing layer."
+        "objection": "We don't have funding or a contract vehicle this cycle.",
+        "response": "That's exactly why we lead with SBIR/STTR and OTA prototype pathways, which provide non-traditional funding on-ramps outside the standard PPBE cycle; we'll help map LSAD to an open solicitation and co-author the white paper."
       }
     ],
     "demo_sequence": [
-      "Set the scenario: brief a GPS-denied, EW-contested operational vignette tied to the program's mission",
-      "Show passive detection: demonstrate LSAD identifying and classifying threats with zero detectable emission",
-      "Display performance metrics live: accuracy, classification latency, and false-alarm rate on screen",
-      "Demonstrate C2 integration: pipe LSAD output into a MOSA-compliant common operating picture",
-      "Walk the transition path: review OTA pathway, ATO artifacts, and cost-at-scale, then schedule prototype scoping"
+      "Set the scenario: stage LSAD in a simulated GPS-denied, comms-degraded forward position",
+      "Trigger a representative threat (UAS or ground intrusion) and show real-time onboard detection and classification",
+      "Display the live dashboard telemetry \u2014 detection confidence, power draw, mission-clock autonomy",
+      "Demonstrate output handoff into a mock C2 interface to prove integration",
+      "Conclude with the evaluation-kit offer and a tailored fielding-pathway discussion"
     ]
   },
   "kpis": {
-    "primary_kpi": "Number of LSAD OTA prototype agreements signed with DoW programs within 12 months (target: 3)",
+    "primary_kpi": "Number of LSAD field evaluations and OTA/SBIR prototype awards initiated within the FY2026 cycle (target: 5 evaluations, 2 awards)",
     "channel_kpis": [
       {
-        "channel": "Direct PEO/Program Office Engagement & Industry Days",
-        "kpi": "Qualified program-office meetings converting to OTA scoping discussions",
-        "target": "12 scoping discussions in 12 months"
+        "channel": "Defense trade conferences (AUSA, SOFIC, Sea-Air-Space)",
+        "kpi": "Qualified booth/private demos with PM or capture-level attendees",
+        "target": "40 qualified demos across the conference season"
       },
       {
-        "channel": "Defense Conferences & Classified Demonstrations",
-        "kpi": "Completed live/classified demonstrations to target programs",
-        "target": "10 demonstrations across flagship events"
+        "channel": "Targeted account-based marketing (ABM) to program offices and primes",
+        "kpi": "Capability briefings scheduled with named target accounts",
+        "target": "25 briefings from the top-50 target list"
       },
       {
-        "channel": "Defense Trade Media & Thought Leadership",
-        "kpi": "Earned-media placements and engagement from .mil/.gov domains",
-        "target": "6 placements; 1,500 .gov/.mil content engagements"
+        "channel": "Defense trade media + thought leadership (Breaking Defense, C4ISRNET)",
+        "kpi": "Inbound demo/briefing requests attributable to media content",
+        "target": "30 attributable inbound requests"
       },
       {
-        "channel": "Targeted Account-Based Digital (LinkedIn + GovExec/Defense Newsletters)",
-        "kpi": "Meeting-request conversions from named target accounts",
-        "target": "40 conversions at 3%+ engagement rate"
+        "channel": "SBIR/STTR + OTA solicitation pursuit and white papers",
+        "kpi": "White papers submitted and downselect invitations received",
+        "target": "8 white papers submitted, 3 downselect invitations"
       }
     ],
-    "reporting_cadence": "Weekly pipeline stand-up during launch period; monthly executive dashboard; quarterly business review aligned to fiscal-year budget milestones"
+    "reporting_cadence": "Weekly pipeline standup with sales; monthly executive dashboard; quarterly QBR aligned to FY budget milestones"
   },
   "risk_contingency": {
     "risks": [
       {
-        "risk": "Continuing resolution freezes new-start funding, stalling OTA awards",
+        "risk": "A continuing resolution freezes FY2026 new-start funding, delaying program awards",
         "probability": "High",
-        "mitigation": "Prioritize programs with existing OTA vehicles and unobligated prior-year funds; position LSAD as a prototype add-on to funded programs rather than a new start; maintain a ready proposal package to capture end-of-year sweep-up funds."
+        "mitigation": "Prioritize SBIR/STTR and OTA pathways that fund outside standard PPBE timing, and use the delay window to deepen field evaluations so LSAD is shovel-ready when funds release"
       },
       {
-        "risk": "Failure to secure ATO/RMF accreditation delays fielding",
+        "risk": "Long acquisition cycles stall pipeline conversion beyond the campaign window",
+        "probability": "High",
+        "mitigation": "Front-load no-cost evaluation kits and prototype OTAs to create contractual momentum early, and structure ABM nurture to sustain buying-committee engagement across multi-quarter cycles"
+      },
+      {
+        "risk": "Failure to secure security accreditation or compliance attestations blocks engagement with risk-averse buyers",
         "probability": "Medium",
-        "mitigation": "Engage an authorizing official early, complete the RMF control package and SBOM pre-launch, and pursue an interim ATO or reciprocity from an existing accredited environment to accelerate the pathway."
+        "mitigation": "Treat CMMC/ITAR/NDAA evidence as a launch gate; complete the compliance matrix before outreach and assign a dedicated owner to maintain attestations current"
       },
       {
-        "risk": "Independent test performance falls short of advertised metrics under new conditions",
-        "probability": "Low",
-        "mitigation": "Scope OTA prototypes with realistic, condition-specific exit criteria; maintain conservative public claims tied only to validated test data; reserve engineering capacity to tune for program-specific environments."
-      },
-      {
-        "risk": "Incumbent vendor lock-in or competing program of record displaces LSAD",
+        "risk": "Field-trial performance fails to replicate in a customer's specific threat environment",
         "probability": "Medium",
-        "mitigation": "Position LSAD as a complementary passive layer rather than a replacement, emphasize MOSA interoperability, and target capability gaps the incumbent cannot address in contested/GPS-denied conditions."
+        "mitigation": "Run joint, customer-defined evaluation protocols rather than vendor-controlled demos, and set transparent performance expectations to protect credibility"
       }
     ],
     "pivot_triggers": [
-      "Fewer than 4 qualified program-office scoping discussions by end of month 6 \u2014 reallocate budget from media to direct engagement and DIU/SOFWERX channels",
-      "Continuing resolution extends past Q2 FY \u2014 shift focus to allied Five Eyes partners and FMS-eligible opportunities",
-      "Demo-to-OTA conversion below 25% \u2014 revisit messaging and add deeper technical proof assets for chief-engineer audiences",
-      "ATO timeline exceeds 6 months on lead program \u2014 pivot lead pursuit to a program with established accredited environment"
+      "Fewer than 10 qualified briefings booked 8 weeks after ABM launch \u2014 reallocate budget toward conference demos and direct PM outreach",
+      "Continuing resolution extends past Q1 CY2026 \u2014 shift emphasis fully to SBIR/OTA non-traditional funding pursuits",
+      "Trade-media content yields under 10 attributable inbounds by week 12 \u2014 cut sponsored media spend and redirect to ABM",
+      "Evaluation-to-award conversion stalls below 20% \u2014 convene win/loss review and adjust messaging or pricing model"
     ]
   }
 }
